@@ -27,79 +27,128 @@
 <main class="wrap">
 
   <div class="hero">
-    <img class="hero-photo" src="/assets/img/profile.jpg" alt="Kento Fujita" width="600" height="600">
-    <div class="hero-text">
-      <h1>Kento Fujita<span class="name-ja">藤田 健人</span></h1>
-      <p class="role"><strong>Robotics Engineer</strong> &nbsp;/&nbsp; <strong>Ph.D. in Control Theory</strong></p>
-      <ul class="linkrow">
-        <li><a href="https://github.com/KennyFujita">GitHub</a></li>
-        <li><a href="https://scholar.google.com/citations?hl=en&amp;user=qDLfMhMAAAAJ">Google Scholar</a></li>
-        <li><a href="https://www.linkedin.com/in/fujita-kento-control/">LinkedIn</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </div>
+    <p class="hero-latin">藤田 健人</p>
+    <h1 class="hero-name">Kento<br>Fujita</h1>
+    <p class="hero-role">Robotics Engineer &nbsp;·&nbsp; Ph.D. in Control Theory</p>
+    <ul class="linkrow">
+      <li><a href="https://github.com/KennyFujita">GitHub</a></li>
+      <li><a href="https://scholar.google.com/citations?hl=en&amp;user=qDLfMhMAAAAJ">Google Scholar</a></li>
+      <li><a href="https://www.linkedin.com/in/fujita-kento-control/">LinkedIn</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
   </div>
 
   <section>
     <h2>About</h2>
-    <p class="lead">
-      I am a robotics engineer. Before that I spent six years on control theory —
-      multi-agent systems, hierarchical optimal control, and communication delay
-      compensation — as a doctoral student at Nagoya University, a researcher at
-      MAZIN Inc., and a postdoctoral researcher at Tokyo City University.
-    </p>
-    <p>
-      This site keeps both halves in one place: the papers I wrote while I was a
-      researcher, and whatever I am building, reading and travelling to now.
-    </p>
+    <div class="about">
+      <img class="about-photo" src="/assets/img/profile.jpg" alt="Kento Fujita" width="600" height="600">
+      <div class="about-text">
+        <p class="lead">
+          I am a robotics engineer. Before that I spent six years on control
+          theory — multi-agent systems, hierarchical optimal control, and
+          communication delay compensation.
+        </p>
+        <p>
+          I did my doctorate at Nagoya University, then worked as a researcher at
+          MAZIN Inc. and as a postdoctoral researcher at Tokyo City University.
+          This site keeps both halves in one place: the papers I wrote while I was
+          a researcher, and whatever I am building, reading and travelling to now.
+        </p>
+      </div>
+    </div>
   </section>
 
   <section>
     <h2>Research</h2>
-    <div class="cards">
 
-      <article class="card">
-        <h3>How optimally can information be aggregated?</h3>
-        <p>
-          Large organisations such as companies and universities are built as
-          hierarchies. Each group compresses the information held by its members
-          into a single summary and passes only that upward — the work of every
-          employee reaches the executives as one department-level result.
-        </p>
-        <p>
-          Aggregation is attractive because it cuts communication load and keeps
-          the system simple, but it can also degrade control performance. If a
-          swarm of drones or a fleet of automated vehicles were organised this
-          way, what is the right summary for a group to send up? I studied the
-          relationship between information aggregation and optimality for linear
-          systems, and gave a criterion for when the two are compatible.
-        </p>
-        <p class="note">
-          Asian Journal of Control (2026) · American Control Conference (2022)
-        </p>
-      </article>
+    <article class="research-item">
+      <h3>How optimally can information be aggregated?</h3>
+      <p>
+        Large organisations such as companies and universities are built as
+        hierarchies. Each group compresses the information held by its members
+        into a single summary and passes only that upward — the work of every
+        employee reaches the executives as one department-level result.
+      </p>
 
-      <article class="card">
-        <h3>How optimally can communication delay be compensated?</h3>
-        <p>
-          Whenever agents exchange information over a network, what each of them
-          receives is already out of date. The natural remedy is to let every
-          agent carry an internal model and predict where its neighbours are
-          <em>now</em> from the delayed measurements it actually holds.
-        </p>
-        <p>
-          The difficulty is that the prediction itself relies on a model and is
-          produced under the same delay it is meant to cancel. I studied a
-          predictor-based compensation scheme for multi-agent systems and the
-          conditions under which it recovers the behaviour intended by the
-          delay-free design.
-        </p>
-        <p class="note">
-          IEEE Access (2024)
-        </p>
-      </article>
+      <figure>
+        <img src="/assets/img/fig-aggregation.jpg" alt="Two groups of agents on a lower level; each group's individual states are aggregated into one representative value that is exchanged on the upper level.">
+        <figcaption>
+          Each group aggregates the states of its own agents into a single
+          representative value, and only those representatives are exchanged on
+          the level above. From
+          <a href="https://doi.org/10.1002/asjc.3786">Fujita &amp; Tsubakino, Asian Journal of Control, 2026</a>.
+        </figcaption>
+      </figure>
 
-    </div>
+      <p>
+        Aggregation is attractive because it cuts communication load and keeps
+        the system simple, but it can also degrade control performance. If a
+        swarm of drones or a fleet of automated vehicles were organised this way,
+        what is the right summary for a group to send up? I studied the
+        relationship between information aggregation and optimality for linear
+        systems, and gave a criterion for when the two are compatible.
+      </p>
+
+      <div class="table-scroll">
+        <table class="level-table">
+          <thead>
+            <tr><th>Level</th><th>System</th><th>Objective</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lv">3</td>
+              <td>Whole system</td>
+              <td>Cooperation of groups<span class="eg">e.g. relative average position stabilisation</span></td>
+            </tr>
+            <tr>
+              <td class="lv">2</td>
+              <td>Each group of individuals</td>
+              <td>Cooperation of individuals<span class="eg">e.g. relative position stabilisation</span></td>
+            </tr>
+            <tr>
+              <td class="lv">1</td>
+              <td>Each individual</td>
+              <td>Individual objective<span class="eg">e.g. velocity stabilisation</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="note">
+        Asian Journal of Control (2026) · American Control Conference (2022)
+      </p>
+    </article>
+
+    <article class="research-item">
+      <h3>How optimally can communication delay be compensated?</h3>
+      <p>
+        Whenever agents exchange information over a network, what each of them
+        receives is already out of date. The natural remedy is to let every agent
+        carry an internal model and predict where its neighbours are <em>now</em>
+        from the delayed measurements it actually holds.
+      </p>
+
+      <figure class="figure--natural">
+        <img src="/assets/img/fig-delay.jpg" alt="Agents predicting each other's states under communication delay. In the plot, the compensated case coincides with the delay-free case and stays stable, while the uncompensated case diverges.">
+        <figcaption>
+          With compensation the trajectories coincide with the delay-free design
+          and stay stable; without it they diverge. From
+          <a href="https://doi.org/10.1109/ACCESS.2024.3520957">Fujita &amp; Tsubakino, IEEE Access, 2024</a>.
+        </figcaption>
+      </figure>
+
+      <p>
+        The difficulty is that the prediction itself relies on a model and is
+        produced under the same delay it is meant to cancel. I studied a
+        predictor-based compensation scheme for multi-agent systems and the
+        conditions under which it recovers the behaviour intended by the
+        delay-free design.
+      </p>
+      <p class="note">
+        IEEE Access (2024)
+      </p>
+    </article>
+
   </section>
 
   <section>
