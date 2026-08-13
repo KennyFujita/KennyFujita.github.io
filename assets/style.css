@@ -1,8 +1,15 @@
 /* ==========================================================================
    Kento Fujita — personal site
    Single stylesheet for every page (English and Japanese).
-   No build step, no external fonts, no JavaScript.
+   No build step, no JavaScript.
+
+   Japanese text uses BIZ UDPGothic (Morisawa, SIL OFL) — a universal-design
+   gothic. Google Fonts splits it into ~250 unicode-range subsets, so a page
+   only downloads the few chunks its characters actually need.
+   Latin text keeps the system UI font, which sits earlier in the stack.
    ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap");
 
 :root {
   --bg: #fcfcfa;
@@ -66,11 +73,10 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
-    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo,
-    sans-serif;
+    "BIZ UDPGothic", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", Meiryo, sans-serif;
   font-size: 16px;
-  line-height: 1.75;
-  font-feature-settings: "palt" 1;
+  line-height: 1.85;
 }
 
 a {

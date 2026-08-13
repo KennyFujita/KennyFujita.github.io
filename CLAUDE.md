@@ -60,6 +60,10 @@ grep -rl 'class="site-nav"' --include='*.html' .
 ページ内に `<style>` を書かない。色は必ず CSS 変数（`var(--fg)`, `var(--accent)` など）を使う。
 ライト/ダーク両対応になっているので、色を直書きすると片方で読めなくなる。
 
+日本語は **BIZ UDPGothic**（モリサワのユニバーサルデザイン書体、SIL OFL）を
+`style.css` 冒頭の `@import` で Google Fonts から読み込んでいる。欧文は
+フォントスタックの先頭にある OS 標準の UI フォントが当たる。外部読み込みはこの1件だけ。
+
 主なクラス:
 
 | クラス | 用途 |
