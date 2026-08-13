@@ -137,6 +137,8 @@ sips -Z 600 /tmp/crop.jpg --out assets/img/出力.jpg
 ## 未対応の TODO
 
 - `ja/cv.html` の勉強会メンバー名がローマ字のまま（漢字表記が未確認）
-- `assets/img/asjc3786-fig-*.jpg`（Asian J. Control の論文図）は未使用・未コミット。
-  研究紹介に使うかは出版社の再利用条件を確認してから判断する
-- 見た目の作り込みは未着手（土台のみ）
+- **研究セクションに図は置かない方針**。一度 Asian J. Control と IEEE Access の図を
+  載せたが、本人判断で外した。元画像は `.gitignore` 済みで手元にのみ残っている
+- **トップページは文字を大きくした案を一度試して差し戻した**。現在の控えめな
+  タイポグラフィが採用版。作り直す前にこの経緯を確認すること（`git log` の
+  `Redesign around type scale` とその revert）
