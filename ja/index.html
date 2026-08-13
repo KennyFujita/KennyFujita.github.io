@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藤田健人</title>
+<meta name="description" content="藤田健人（Kento Fujita）— ロボットエンジニア、博士（工学）。マルチエージェントシステム、階層化最適制御、通信遅延補償。">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/ja/">藤田 健人</a>
+    <nav class="site-nav">
+      <a href="/ja/" aria-current="page">ホーム</a>
+      <a href="/ja/publications.html">業績</a>
+      <a href="/ja/cv.html">経歴</a>
+      <a href="/ja/works.html">制作物</a>
+      <a href="/ja/notes/">ノート</a>
+      <a href="/ja/contact.html">連絡先</a>
+      <span class="lang-switch"><a href="/">English</a></span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <img class="hero-photo" src="/assets/img/profile.jpg" alt="藤田健人" width="600" height="600">
+    <div class="hero-text">
+      <h1>藤田 健人<span class="name-ja">Kento Fujita</span></h1>
+      <p class="role"><strong>ロボットエンジニア</strong> &nbsp;/&nbsp; <strong>博士（工学）・制御理論</strong></p>
+      <ul class="linkrow">
+        <li><a href="https://github.com/KennyFujita">GitHub</a></li>
+        <li><a href="https://scholar.google.com/citations?hl=en&amp;user=qDLfMhMAAAAJ">Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/fujita-kento-control/">LinkedIn</a></li>
+        <li><a href="/ja/contact.html">連絡先</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section>
+    <h2>自己紹介</h2>
+    <p class="lead">
+      ロボットエンジニアとして働いています。それまでの6年間は制御理論——マルチエージェントシステム、
+      階層化最適制御、通信遅延補償——を専門に、名古屋大学の博士課程、株式会社MAZIN、
+      東京都市大学のポスドクとして研究していました。
+    </p>
+    <p>
+      このサイトには両方を置いています。研究者だった頃に書いた論文と、
+      いま作っているもの・読んでいるもの・行った場所です。
+    </p>
+  </section>
+
+  <section>
+    <h2>研究</h2>
+    <div class="cards">
+
+      <article class="card">
+        <h3>最適な情報集約とは</h3>
+        <p>
+          企業や大学といった大規模な人間社会では、グループ分けによる階層的な構造がみてとれます。
+          この階層構造では、グループ内の各サブシステムの情報はグループとしての何らかの情報に集約されて
+          上の層へ渡されます（例：各社員の働きが部署の成果として社長に報告される）。
+        </p>
+        <p>
+          情報集約は通信量の観点からは嬉しいですが、すべての情報をやりとりする場合に比べると
+          全体としての制御性能が劣化する恐れがあります。もしもドローン群や自動運転車群で
+          階層的なネットワークを構成した場合、各グループ内のサブシステムの情報を
+          どのようなグループとしての情報に集約すれば良いでしょうか。
+          線形システムに対して情報集約と制御性能の関係を解析し、
+          両者が両立するための条件を与えました。
+        </p>
+        <p class="note">
+          Asian Journal of Control（2026年）・American Control Conference（2022年）
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>最適な通信遅延の補償とは</h3>
+        <p>
+          ネットワークを介して情報をやりとりする限り、各エージェントが受け取る情報は必ず過去のものです。
+          そこで自然に思いつくのが、各エージェントに内部モデルを持たせ、
+          手元にある遅れた観測から相手の「いま」の状態を予測させるという方法です。
+        </p>
+        <p>
+          難しいのは、その予測自体がモデルに依存し、しかも打ち消したい遅延と同じ遅延の下で
+          計算されるという点です。マルチエージェントシステムに対する予測器ベースの補償手法と、
+          それが遅延のない設計で意図した挙動を回復するための条件を調べました。
+        </p>
+        <p class="note">
+          IEEE Access（2024年）
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>興味</h2>
+    <p>
+      研究では、制御理論に代数学を組み合わせてマルチエージェントシステムの分野を
+      開拓していくことを目指していました。その背景にある大きな目標は変わっていません。
+      ダイナミクスの持つ非線形性を、抑え込むのではなく生かして、美しい動きを実現することです。
+    </p>
+    <ul class="plain-list">
+      <li>非線形制御理論（ノンホロノミックシステムなど）</li>
+      <li>抽象代数学（環論、表現論）</li>
+      <li>微分幾何学（多様体、リー群・リー代数）</li>
+      <li>データ駆動科学、機械学習</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>仕事以外のこと</h2>
+    <p>
+      旅行、卓球、将棋とチェス、NBA観戦。いちばん話したくなる旅先は、いまでもインドのガンジス川です。
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Kento Fujita</span>
+    <span><a href="/">English</a> · <a href="https://github.com/KennyFujita">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

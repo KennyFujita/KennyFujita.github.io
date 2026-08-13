@@ -1,0 +1,138 @@
+# このリポジトリの編集ルール
+
+藤田健人の個人サイト。`https://kennyfujita.github.io/` で公開。
+ビルド工程なし・外部ライブラリなし・JavaScript なしの静的 HTML。
+`main` に push した内容がそのまま公開される。
+
+## 掲載しないもの（重要）
+
+- **現在の勤務先の社名**。職種（ロボットエンジニア / Robotics Engineer）までにとどめる
+- **住所・居室番号・電話番号**
+- メールアドレスは必ず `[at]` 表記にする（`@` を直接書かない）
+
+過去の所属（名古屋大学、東京都市大学、株式会社MAZIN、セビージャ大学、東京農工大学）は掲載してよい。
+
+## 構成
+
+```
+index.html            Home        /ja/index.html
+publications.html     業績        /ja/publications.html
+cv.html               経歴        /ja/cv.html
+works.html            制作物      /ja/works.html
+notes/index.html      ノート一覧  /ja/notes/index.html
+notes/_template.html  記事の雛形  /ja/notes/_template.html
+contact.html          連絡先      /ja/contact.html
+assets/style.css      全ページ共通の唯一のスタイルシート
+assets/img/           画像
+.nojekyll             GitHub Pages の Jekyll 処理を止める（`_template.html` を配信するため必須）
+```
+
+## 守ること
+
+### 1. 英語と日本語は必ず対で更新する
+
+英語ページを変更したら、対応する `/ja/` のページも同じ内容に更新する。
+これは旧 Google Sites で英日の情報量がずれていた（業績が英語版だけ少ない、
+受賞が日本語版だけ少ない）ことへの再発防止策。**片方だけの更新はしない。**
+
+対応が取れているかは件数で確認できる:
+
+```sh
+grep -c '<li>' publications.html ja/publications.html   # 業績の件数が一致すること
+```
+
+### 2. ヘッダーとフッターは全ファイルに複製されている
+
+include の仕組みを持たないため、`<header class="site-header">` と
+`<footer class="site-footer">` は各 HTML に同じものが書かれている。
+**ナビゲーション項目を増減するときは、以下すべてを一括で書き換える。**
+
+```sh
+grep -rl 'class="site-nav"' --include='*.html' .
+```
+
+英語ページのナビは `/` 始まりの絶対パス、日本語ページは `/ja/` 始まり。
+現在開いているページのリンクには `aria-current="page"` を付ける。
+`lang-switch` は対になる相手の言語ページを指す（例: `cv.html` ⇔ `/ja/cv.html`）。
+
+### 3. スタイルは `assets/style.css` だけ
+
+ページ内に `<style>` を書かない。色は必ず CSS 変数（`var(--fg)`, `var(--accent)` など）を使う。
+ライト/ダーク両対応になっているので、色を直書きすると片方で読めなくなる。
+
+主なクラス:
+
+| クラス | 用途 |
+|---|---|
+| `.wrap` | 横幅を揃えるコンテナ。`main` と `header`/`footer` の直下に置く |
+| `.hero` / `.hero-photo` | トップの顔写真＋名前 |
+| `.linkrow` | 丸いリンクボタンの並び |
+| `.cards` / `.card` | カードのグリッド（研究紹介、制作物） |
+| `.pub-list` | 業績リスト。`.authors` `.title` `.venue` `.self` `.award` `.orig` を内側で使う |
+| `.timeline` | 経歴（`.when` と `.what`、`.what` の中に `.sub`） |
+| `.plain-list` | 箇条書き（`.when` で日付を先頭に置ける） |
+| `.note-list` | ノート一覧（`.date` と `.tag`） |
+| `.note` / `.muted` | 補足テキスト |
+
+## 作業手順
+
+### ノートを1本追加する
+
+1. `notes/_template.html` をコピーして `notes/YYYY-MM-DD-slug.html` を作る（slug は英小文字とハイフン）
+2. `<title>`、`<meta name="description">`、`<h1>`、日付、タグ、本文を埋める
+   - タグは `study` / `reading` / `travel` / `misc` のいずれか
+3. `notes/index.html` の `<ul class="note-list">` の **先頭** に1件追加する（新しい順）
+4. 初めて記事が入るときは `notes/index.html` の `.empty-state` ブロックを削除する
+5. 日本語版でも同じことを `/ja/notes/` に対して行う
+
+### 制作物を1件追加する
+
+`works.html` の `<div class="cards">` 内、コメントアウトされたテンプレートをコピーして埋める。
+`/ja/works.html` も同様に。
+
+### 業績を1件追加する
+
+`publications.html` の該当セクション（学術論文 / 国際会議 / 国内学会）の `<ol class="pub-list">` の
+**先頭** に追加する。自分の名前は `<span class="self">` で囲む。
+書誌情報は DOI から Crossref で裏取りできる:
+
+```sh
+curl -s "https://api.crossref.org/works/<DOI>" | python3 -m json.tool | head -40
+```
+
+`/ja/publications.html` も忘れずに。国際的な論文は日本語ページでも英語表記のまま、
+国内学会は日本語表記で載せる。
+
+## 確認とデプロイ
+
+```sh
+# ローカル確認
+python3 -m http.server 8000     # http://localhost:8000/
+
+# 内部リンクがファイルとして存在するかの確認
+grep -rhoE 'href="/[^"]*"' --include='*.html' . | sort -u
+
+# 公開
+git add -A && git commit -m "..." && git push
+```
+
+push から反映まで1分程度かかる。
+
+## 画像の扱い
+
+- 公開する画像は **長辺 600px 程度・数十 KB** まで縮小してから置く。カメラ原本をそのまま
+  コミットしない（`assets/img/profile.jpg` は 12000×9000 の原本から切り出して 600×600 にしたもの）
+
+```sh
+sips -c <辺> <辺> --cropOffset <top> <left> 原本.jpg --out /tmp/crop.jpg
+sips -Z 600 /tmp/crop.jpg --out assets/img/出力.jpg
+```
+
+- 再エンコードで EXIF（位置情報を含む）が落ちる。人物写真を置く前に必ず通すこと
+
+## 未対応の TODO
+
+- `ja/cv.html` の勉強会メンバー名がローマ字のまま（漢字表記が未確認）
+- `assets/img/asjc3786-fig-*.jpg`（Asian J. Control の論文図）は未使用・未コミット。
+  研究紹介に使うかは出版社の再利用条件を確認してから判断する
+- 見た目の作り込みは未着手（土台のみ）

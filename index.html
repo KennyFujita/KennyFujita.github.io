@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kento Fujita</title>
+<meta name="description" content="Kento Fujita — robotics engineer, Ph.D. in control theory. Multi-agent systems, hierarchical optimal control, communication delay compensation.">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">Kento Fujita</a>
+    <nav class="site-nav">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/cv.html">CV</a>
+      <a href="/works.html">Works</a>
+      <a href="/notes/">Notes</a>
+      <a href="/contact.html">Contact</a>
+      <span class="lang-switch"><a href="/ja/">日本語</a></span>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <img class="hero-photo" src="/assets/img/profile.jpg" alt="Kento Fujita" width="600" height="600">
+    <div class="hero-text">
+      <h1>Kento Fujita<span class="name-ja">藤田 健人</span></h1>
+      <p class="role"><strong>Robotics Engineer</strong> &nbsp;/&nbsp; <strong>Ph.D. in Control Theory</strong></p>
+      <ul class="linkrow">
+        <li><a href="https://github.com/KennyFujita">GitHub</a></li>
+        <li><a href="https://scholar.google.com/citations?hl=en&amp;user=qDLfMhMAAAAJ">Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/fujita-kento-control/">LinkedIn</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section>
+    <h2>About</h2>
+    <p class="lead">
+      I am a robotics engineer. Before that I spent six years on control theory —
+      multi-agent systems, hierarchical optimal control, and communication delay
+      compensation — as a doctoral student at Nagoya University, a researcher at
+      MAZIN Inc., and a postdoctoral researcher at Tokyo City University.
+    </p>
+    <p>
+      This site keeps both halves in one place: the papers I wrote while I was a
+      researcher, and whatever I am building, reading and travelling to now.
+    </p>
+  </section>
+
+  <section>
+    <h2>Research</h2>
+    <div class="cards">
+
+      <article class="card">
+        <h3>How optimally can information be aggregated?</h3>
+        <p>
+          Large organisations such as companies and universities are built as
+          hierarchies. Each group compresses the information held by its members
+          into a single summary and passes only that upward — the work of every
+          employee reaches the executives as one department-level result.
+        </p>
+        <p>
+          Aggregation is attractive because it cuts communication load and keeps
+          the system simple, but it can also degrade control performance. If a
+          swarm of drones or a fleet of automated vehicles were organised this
+          way, what is the right summary for a group to send up? I studied the
+          relationship between information aggregation and optimality for linear
+          systems, and gave a criterion for when the two are compatible.
+        </p>
+        <p class="note">
+          Asian Journal of Control (2026) · American Control Conference (2022)
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>How optimally can communication delay be compensated?</h3>
+        <p>
+          Whenever agents exchange information over a network, what each of them
+          receives is already out of date. The natural remedy is to let every
+          agent carry an internal model and predict where its neighbours are
+          <em>now</em> from the delayed measurements it actually holds.
+        </p>
+        <p>
+          The difficulty is that the prediction itself relies on a model and is
+          produced under the same delay it is meant to cancel. I studied a
+          predictor-based compensation scheme for multi-agent systems and the
+          conditions under which it recovers the behaviour intended by the
+          delay-free design.
+        </p>
+        <p class="note">
+          IEEE Access (2024)
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Interests</h2>
+    <p>
+      My research aimed at opening up multi-agent systems by bringing abstract
+      algebra together with control theory. The long-term dream behind it has
+      not changed: to realise beautiful motion by exploiting, rather than
+      cancelling, the nonlinearity of dynamics.
+    </p>
+    <ul class="plain-list">
+      <li>Nonlinear control theory, including nonholonomic systems</li>
+      <li>Abstract algebra — ring theory, representation theory</li>
+      <li>Differential geometry — manifolds, Lie groups and Lie algebras</li>
+      <li>Data-driven methods and machine learning</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Off the clock</h2>
+    <p>
+      Travelling, table tennis, shogi and chess, and watching the NBA. The trip
+      I still talk about most is the one to the Ganges in India.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Kento Fujita</span>
+    <span><a href="/ja/">日本語</a> · <a href="https://github.com/KennyFujita">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+/* ==========================================================================
+   Kento Fujita — personal site
+   Single stylesheet for every page (English and Japanese).
+   No build step, no external fonts, no JavaScript.
+   ========================================================================== */
+
+:root {
+  --bg: #fcfcfa;
+  --surface: #ffffff;
+  --fg: #1c1c1a;
+  --muted: #63635e;
+  --faint: #8a8a84;
+  --border: #e3e2dd;
+  --accent: #275b87;
+  --accent-soft: #eef3f8;
+  --shadow: 0 1px 2px rgba(20, 20, 18, 0.05), 0 6px 20px rgba(20, 20, 18, 0.04);
+  --radius: 10px;
+  --measure: 46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16171a;
+    --surface: #1e1f23;
+    --fg: #e7e7e4;
+    --muted: #a6a6a1;
+    --faint: #85857f;
+    --border: #2e3036;
+    --accent: #8ab6dd;
+    --accent-soft: #222932;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* The theme toggle on hosted pages stamps data-theme on <html>; it must win. */
+:root[data-theme="light"] {
+  --bg: #fcfcfa;
+  --surface: #ffffff;
+  --fg: #1c1c1a;
+  --muted: #63635e;
+  --faint: #8a8a84;
+  --border: #e3e2dd;
+  --accent: #275b87;
+  --accent-soft: #eef3f8;
+}
+
+:root[data-theme="dark"] {
+  --bg: #16171a;
+  --surface: #1e1f23;
+  --fg: #e7e7e4;
+  --muted: #a6a6a1;
+  --faint: #85857f;
+  --border: #2e3036;
+  --accent: #8ab6dd;
+  --accent-soft: #222932;
+}
+
+/* --------------------------------------------------------------- base ---- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  font-feature-settings: "palt" 1;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: currentColor;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.35;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------- layout ---- */
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+main {
+  padding: 2.5rem 0 4rem;
+}
+
+section {
+  margin: 0 0 3rem;
+}
+
+section > h2 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ------------------------------------------------------------- header ---- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.brand {
+  font-weight: 650;
+  font-size: 1.02rem;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+  border-bottom: none;
+}
+
+.brand:hover {
+  color: var(--accent);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  margin-left: auto;
+  font-size: 0.92rem;
+}
+
+.site-nav a {
+  color: var(--muted);
+  border-bottom: none;
+}
+
+.site-nav a:hover {
+  color: var(--fg);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.lang-switch {
+  font-size: 0.85rem;
+  color: var(--faint);
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--border);
+}
+
+/* --------------------------------------------------------------- hero ---- */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.hero-photo {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  flex: none;
+}
+
+.hero-photo--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faint);
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.4;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.hero-text {
+  flex: 1 1 16rem;
+}
+
+.hero h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.9rem;
+}
+
+.hero .name-ja {
+  color: var(--faint);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.6rem;
+  letter-spacing: 0.02em;
+}
+
+.hero .role {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.hero .role strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------------- links ---- */
+
+.linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkrow a {
+  display: inline-block;
+  font-size: 0.86rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.linkrow a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------------------------------------------------------- text bits ---- */
+
+.lead {
+  font-size: 1.05rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.note {
+  font-size: 0.88rem;
+  color: var(--faint);
+}
+
+/* ------------------------------------------------------------- cards ----- */
+
+.cards {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow);
+}
+
+.card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.02rem;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card .card-meta {
+  font-size: 0.82rem;
+  color: var(--faint);
+  margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------- publications ---- */
+
+.pub-group {
+  margin-bottom: 2.25rem;
+}
+
+.pub-group h3 {
+  font-size: 0.95rem;
+  margin: 0 0 0.9rem;
+  color: var(--fg);
+}
+
+.pub-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pub;
+}
+
+.pub-list > li {
+  position: relative;
+  padding: 0 0 1.05rem 2.2rem;
+  counter-increment: pub;
+}
+
+.pub-list > li::before {
+  content: "[" counter(pub) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--faint);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pub-list .authors {
+  color: var(--fg);
+}
+
+.pub-list .title {
+  font-weight: 600;
+}
+
+.pub-list .venue {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.pub-list .orig {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--faint);
+  font-style: normal;
+}
+
+.pub-list .self {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+.pub-list .award {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 0 0.4em;
+  margin-left: 0.3em;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------- cv ---- */
+
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline > li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.timeline > li:last-child {
+  border-bottom: none;
+}
+
+.timeline .when {
+  flex: 0 0 9.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.15rem;
+}
+
+.timeline .what {
+  flex: 1 1 16rem;
+}
+
+.timeline .what strong {
+  font-weight: 600;
+}
+
+.timeline .what .sub {
+  display: block;
+  color: var(--muted);
+  font-size: 0.89rem;
+}
+
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-list > li {
+  padding: 0.4rem 0 0.4rem 1.1rem;
+  position: relative;
+}
+
+.plain-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.02em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.plain-list .when {
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+
+/* -------------------------------------------------------------- notes ---- */
+
+.note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-list > li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.9rem;
+}
+
+.note-list .date {
+  color: var(--faint);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  flex: 0 0 6rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0 0.55em;
+}
+
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------- footer ---- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 0 2.5rem;
+  color: var(--faint);
+  font-size: 0.86rem;
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  justify-content: space-between;
+}
+
+.site-footer a {
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------- small screens - */
+
+@media (max-width: 34rem) {
+  .hero {
+    gap: 1.25rem;
+  }
+
+  .hero-photo {
+    width: 96px;
+    height: 96px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero .name-ja {
+    display: block;
+    margin-left: 0;
+  }
+
+  .timeline .when {
+    flex-basis: 100%;
+  }
+
+  .note-list .date {
+    flex-basis: auto;
+  }
+}
+
+/* ---------------------------------------------------------------- print -- */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .linkrow {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  a {
+    color: #000;
+  }
+}
