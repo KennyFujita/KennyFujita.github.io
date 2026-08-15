@@ -124,6 +124,21 @@ grep -rl 'class="site-nav"' --include='*.html' .
 3. SEO 一式（`description` / Open Graph / canonical）
 4. MIT ライセンスの `LICENSE` ファイル（GitHub のサイドバーに表示が出る）
 
+## スライドの置き方
+
+**発表スライドも別リポジトリ。[`slides`](https://github.com/KennyFujita/slides) に置き、
+`/slides/` で公開している。** 理由は Web アプリと同じで、鍵付きスライドの復号に
+JavaScript が要るため。ここに置くと「JS なし・例外なし」が崩れる。
+
+`slides` 側は各スライドを AES-256-CBC + HMAC-SHA256 で暗号化し、パスワードを
+入れた人だけが読めるようにしてある（平文はリポジトリにも配信物にも入っていない）。
+**ただしこれは検索避けであって秘密の保護ではない。** 暗号文は誰でも落とせて
+オフラインで総当たりできる。手順とパスワード運用は `slides/README.md` にある。
+
+このリポジトリでやるのは `notes/index.html` / `ja/notes/index.html` に
+`/slides/...` へのリンクを1行足すことだけ。鍵付きのものは頭に 🔒（`&#128274;`）を
+付け、一覧冒頭の `.muted` で「🔒 はパスワードが要る」と断っている。
+
 ## 作業手順
 
 ### ノートを1本追加する
